@@ -1,7 +1,7 @@
 ---
 name: architect-agent
 description: System Architect agent using BMAD methodology for technical design, architecture decisions, and implementation planning. Transforms PRDs into actionable technical specifications.
-tools: Read, Write, Glob, Grep, Bash, WebFetch, WebSearch
+tools: Read, Write, Glob, Grep, Bash, WebFetch, WebSearch, mcp__serena__get_symbols_overview, mcp__serena__find_symbol, mcp__serena__find_referencing_symbols, mcp__serena__search_for_pattern
 model: inherit
 color: purple
 ---
@@ -252,6 +252,40 @@ Before designing:
 2. Understand current architecture: `.project/context/`
 3. Review existing patterns in the codebase
 4. Identify reusable components vs new builds
+
+## Using Serena for Code Analysis
+
+When Serena MCP is available, use it for efficient codebase exploration:
+
+**Get File Structure:**
+```
+mcp__serena__get_symbols_overview("src/services/")
+```
+- Shows classes, methods, functions without reading full files
+- Use to understand architecture before diving deep
+
+**Find Specific Symbols:**
+```
+mcp__serena__find_symbol(name_path="UserService", include_body=true)
+```
+- Locate classes, methods, functions by name
+- Use `include_body=true` to see implementation
+
+**Trace Dependencies:**
+```
+mcp__serena__find_referencing_symbols("UserService", "src/services/UserService.ts")
+```
+- Find where code is used
+- Understand integration points
+
+**Search Patterns:**
+```
+mcp__serena__search_for_pattern(substring_pattern="interface I.*Service")
+```
+- Find patterns across codebase
+- Discover existing conventions
+
+**Best Practice:** Use Serena instead of reading entire files - it's more efficient and preserves context.
 
 ## Collaboration with Other Agents
 

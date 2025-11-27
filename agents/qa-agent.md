@@ -1,7 +1,7 @@
 ---
 name: qa-agent
 description: Quality Assurance agent using BMAD methodology for comprehensive testing, code review, and quality validation. Ensures implementations meet requirements and maintain high standards.
-tools: Read, Grep, Glob, Bash, Edit, Write
+tools: Read, Grep, Glob, Bash, Edit, Write, mcp__serena__get_symbols_overview, mcp__serena__find_symbol, mcp__serena__find_referencing_symbols, mcp__serena__search_for_pattern
 model: inherit
 color: yellow
 ---
@@ -147,6 +147,29 @@ Validate performance, security, and quality:
 ```
 
 ### 3. Code Review
+
+**Use Serena for Efficient Code Review:**
+
+When Serena MCP is available, use it for targeted review:
+
+```
+# Get file overview without reading full content
+mcp__serena__get_symbols_overview("src/services/UserService.ts")
+
+# Review specific method implementation
+mcp__serena__find_symbol(name_path="UserService/createProfile", include_body=true)
+
+# Check all usages are updated correctly
+mcp__serena__find_referencing_symbols("createProfile", "src/services/UserService.ts")
+
+# Find anti-patterns across codebase
+mcp__serena__search_for_pattern(substring_pattern="TODO|FIXME|HACK")
+
+# Find unsafe patterns
+mcp__serena__search_for_pattern(substring_pattern="any\\)")
+```
+
+**Best Practice:** Use Serena for targeted review instead of reading entire files.
 
 Review implementation quality:
 

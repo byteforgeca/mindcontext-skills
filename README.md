@@ -7,9 +7,10 @@
 FlowForge brings structured project management to Claude Code through natural language. Simply describe what you want to do and Claude activates the appropriate skill or spawns specialized agents for complex operations.
 
 **What's Included:**
-- **19 Skills** - Natural language triggers for PM workflows
+- **20 Skills** - Natural language triggers for PM workflows
 - **4 Agents** - Specialized AI agents using BMAD methodology
 - **Entity Management** - Unified CRUD for PRDs, Epics, and Issues
+- **Serena Integration** - Intelligent code analysis for agents
 
 ## Installation
 
@@ -123,6 +124,11 @@ Or ask Claude what skills are available:
 |-------|----------|-------------|
 | `entity-manage` | "create/edit/show/list/close prd/epic/issue" | Unified CRUD with intelligent agent routing |
 
+### Code Analysis
+| Skill | Triggers | Description |
+|-------|----------|-------------|
+| `serena-setup` | "setup serena", "install serena", "configure serena" | Install and configure Serena MCP for intelligent code analysis |
+
 ## Available Agents
 
 FlowForge includes specialized agents using BMAD (Business Model Amplification through Design) methodology:
@@ -167,6 +173,23 @@ Skills automatically route to appropriate agents based on the operation:
 | `close` | inline | haiku | Status update |
 | `sync` | developer-agent | sonnet | GitHub integration |
 | `status` | inline | haiku | Quick status check |
+
+### Serena Integration
+
+Agents use [Serena MCP](https://github.com/anthropics/serena) for intelligent code analysis when available:
+
+| Agent | Serena Tools |
+|-------|-------------|
+| `architect-agent` | `get_symbols_overview`, `find_symbol`, `find_referencing_symbols`, `search_for_pattern` |
+| `developer-agent` | All tools including `replace_symbol_body`, `insert_*`, `rename_symbol` |
+| `qa-agent` | `get_symbols_overview`, `find_symbol`, `find_referencing_symbols`, `search_for_pattern` |
+
+**Setup Serena:**
+```
+"setup serena"
+```
+
+This configures Serena MCP for efficient code analysis. Agents automatically use Serena tools when available.
 
 ## Project Structure
 

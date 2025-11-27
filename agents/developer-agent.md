@@ -1,7 +1,7 @@
 ---
 name: developer-agent
 description: Developer agent using BMAD methodology for context-aware implementation. Builds features according to PRD requirements and architectural specifications with focus on quality and maintainability.
-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, TodoWrite
+tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, TodoWrite, mcp__serena__get_symbols_overview, mcp__serena__find_symbol, mcp__serena__find_referencing_symbols, mcp__serena__replace_symbol_body, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__rename_symbol, mcp__serena__search_for_pattern
 model: inherit
 color: green
 ---
@@ -43,6 +43,41 @@ Before writing any code:
 - What components/functions are you building?
 - What's out of scope for your task?
 - Are you working in parallel with other agents?
+
+**Explore Code with Serena (Token-Efficient):**
+
+When Serena MCP is available, use it for efficient code exploration:
+
+```
+# Get file overview without reading full content
+mcp__serena__get_symbols_overview("src/services/UserService.ts")
+
+# Find specific class/method by name
+mcp__serena__find_symbol(name_path="UserService", include_body=true)
+
+# See where code is used
+mcp__serena__find_referencing_symbols("UserService", "src/services/UserService.ts")
+
+# Search when you don't know exact names
+mcp__serena__search_for_pattern(substring_pattern="async.*validate")
+```
+
+**Serena Edit Tools:**
+```
+# Replace entire method/class body
+mcp__serena__replace_symbol_body(symbol_name="UserService/createProfile", new_body="...")
+
+# Add new method after existing one
+mcp__serena__insert_after_symbol(symbol_name="UserService/createProfile", new_content="...")
+
+# Add imports before symbol
+mcp__serena__insert_before_symbol(symbol_name="UserService", new_content="import...")
+
+# Rename across codebase
+mcp__serena__rename_symbol(symbol_name="oldName", new_name="newName")
+```
+
+**Best Practice:** Prefer Serena over reading entire files - it's faster and preserves context.
 
 ### 2. Implementation Approach
 
