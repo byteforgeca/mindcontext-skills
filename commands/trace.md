@@ -1,6 +1,5 @@
 ---
-name: trace
-description: Trace logic flow across files, map execution paths, understand data flow. Use to understand how code works end-to-end.
+description: Trace logic flow across files, map execution paths, understand data flow
 ---
 
 # Trace Logic Flow

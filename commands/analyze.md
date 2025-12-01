@@ -1,6 +1,5 @@
 ---
-name: analyze
-description: Analyze code for bugs, issues, edge cases, and potential problems. Use for deep code analysis and bug detection.
+description: Analyze code for bugs, issues, edge cases, and potential problems
 ---
 
 # Analyze Code

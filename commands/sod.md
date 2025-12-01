@@ -1,6 +1,5 @@
 ---
-name: sod
-description: Start of day - sync repository, prime context, and show work status. Use when user says "sod", "start of day", "morning sync", "init session", or "what's my status".
+description: Start of day - sync repository, prime context, and show work status
 ---
 
 # Start of Day

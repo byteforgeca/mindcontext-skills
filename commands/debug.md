@@ -1,6 +1,5 @@
 ---
-name: debug
-description: Debug failures, investigate errors, perform root cause analysis. Use when something is broken or failing.
+description: Debug failures, investigate errors, perform root cause analysis
 ---
 
 # Debug Issue

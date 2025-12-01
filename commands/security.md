@@ -1,6 +1,5 @@
 ---
-name: security
-description: Security audit checking for vulnerabilities, OWASP top 10, and security best practices. Use for security analysis.
+description: Security audit checking for vulnerabilities, OWASP top 10, and security best practices
 ---
 
 # Security Audit

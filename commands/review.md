@@ -1,6 +1,5 @@
 ---
-name: review
-description: Code review for quality, architecture compliance, and pattern validation. Use to review code changes before merging.
+description: Code review for quality, architecture compliance, and pattern validation
 ---
 
 # Code Review

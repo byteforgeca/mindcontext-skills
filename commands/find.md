@@ -1,6 +1,5 @@
 ---
-name: find
-description: Find existing implementations, locate code, discover patterns and architecture. Use when you need to locate where something is implemented or discover existing solutions.
+description: Find existing implementations, locate code, discover patterns and architecture
 ---
 
 # Find Code

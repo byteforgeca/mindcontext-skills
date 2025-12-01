@@ -1,6 +1,5 @@
 ---
-name: commit
-description: Smart commit - intelligently detect and commit changes across submodules, worktrees, and parent repo. Use when user says "commit", "smart commit", "save work", or "git commit".
+description: Smart commit - intelligently detect and commit changes across submodules and parent repo
 ---
 
 # Smart Commit
