@@ -154,23 +154,38 @@ Phase B: Migrate Content
      - docs/overview.md → .project/context/project-overview.md
      - [X more files]
 
-Phase C: Cleanup Duplicates
-  Remove (replaced by FlowForge skills):
-    - .claude/commands/pm/prd-new.md
-    - .claude/commands/pm/epic-decompose.md
-    - .claude/skills/legacy-structure-task/
-    - .claude/skills/legacy-structure-merge/
-    - [X more files]
+Phase C: Remove Superseded Directories
+  Remove (FlowForge plugin provides these):
+    - .claude/agents/        (plugin provides agents)
+    - .claude/commands/      (plugin provides commands)
+    - .claude/skills/        (plugin provides skills)
+    - .claude/scripts/       (no longer needed)
 
-Phase D: Archive Old Structure
+  Keep:
+    - .claude/mcp.json       (Serena and other MCP servers)
+    - CLAUDE.md              (project-specific instructions)
+
+Phase D: Consolidate Context Files
+  Move to .project/context/:
+    - legacy-structure/context/*.md
+    - docs/*context*.md
+    - docs/*overview*.md
+    - *progress*.md (from anywhere)
+    - [X more scattered context files]
+
+Phase E: Archive Old Structure
   Move to .archive/:
     - legacy-structure/ (entire directory)
+    - .claude/agents/ (if not empty - archived before removal)
+    - .claude/commands/ (if not empty - archived before removal)
+    - .claude/skills/ (if not empty - archived before removal)
 
 ⚠️ CHANGES SUMMARY
   Files to move: [X]
-  Files to remove: [X]
+  Directories to remove: 4 (.claude subdirectories)
+  Context files to consolidate: [X]
   Files to archive: [X]
-  Files to keep: [X]
+  Files to keep: [X] (mcp.json, CLAUDE.md)
 
 Proceed with migration? (yes/no/modify)
 ```
@@ -216,23 +231,94 @@ Update paths in migrated files:
 - `legacy-structure/context/` → `.project/context/`
 - `legacy-structure/epics/` → `.project/epics/`
 
-**Step 4.4: Remove Duplicates**
+**Step 4.4: Remove Superseded FlowForge Directories**
+
+When FlowForge is installed as a plugin, local `.claude/` directories become superseded. Remove them to avoid conflicts:
 
 ```bash
-# Remove commands replaced by FlowForge
-rm -rf .claude/commands/pm/prd-new.md
-rm -rf .claude/commands/pm/epic-decompose.md
-rm -rf .claude/commands/sod.md
-# ... etc
+# Remove superseded directories (FlowForge plugin handles these now)
+rm -rf .claude/agents/     # FlowForge plugin provides agents
+rm -rf .claude/commands/   # FlowForge plugin provides commands
+rm -rf .claude/skills/     # FlowForge plugin provides skills
+rm -rf .claude/scripts/    # No longer needed with plugin system
 
-# Remove skills replaced by FlowForge
-rm -rf .claude/skills/legacy-structure-task/
-rm -rf .claude/skills/legacy-structure-merge/
-rm -rf .claude/skills/pm-create/
+# Keep these (not superseded):
+# - .claude/mcp.json        (MCP server config like Serena)
+# - CLAUDE.md               (Project-specific instructions)
+```
+
+**Important:** Only remove these if FlowForge plugin is installed:
+```bash
+# Verify FlowForge is installed first
+/plugin list | grep flowforge-skills
+```
+
+If not installed, warn user:
+```
+⚠️  FlowForge plugin not detected
+
+These directories will be removed:
+  - .claude/agents/
+  - .claude/commands/
+  - .claude/skills/
+  - .claude/scripts/
+
+To avoid losing functionality, install FlowForge first:
+  /plugin marketplace add tmsjngx0/flowforge-skills
+  /plugin install flowforge-skills@tmsjngx0
+
+Then run migration again.
+
+Proceed anyway? (yes/no)
+```
+
+**Step 4.5: Move Context Files to .project/**
+
+Find and consolidate all context files:
+
+```bash
+# Find all context-related files
+find . -type f \( \
+  -name "*context*.md" -o \
+  -name "*progress*.md" -o \
+  -name "*overview*.md" -o \
+  -name "*tech*.md" -o \
+  -name "project-*.md" \
+  \) ! -path "./.git/*" ! -path "./node_modules/*" ! -path "./.project/*"
+
+# Move to .project/context/ with smart naming
+for file in $(find . -name "*context*.md" ! -path "./.project/*"); do
+  basename=$(basename "$file")
+  mv "$file" ".project/context/$basename"
+done
+
+# Handle scattered overview files
+mv docs/project-overview.md .project/context/project-overview.md 2>/dev/null
+mv docs/architecture.md .project/context/architecture.md 2>/dev/null
+mv README-dev.md .project/context/development-guide.md 2>/dev/null
+```
+
+**Context File Priority:**
+
+After moving, organize by priority in `.project/context/`:
+1. `project-overview.md` - High-level project summary
+2. `tech-context.md` - Technical stack and architecture
+3. `progress.md` - Current state and recent work
+4. `architecture.md` - Detailed system design
+5. `development-guide.md` - Dev setup and conventions
+6. Other context files
+
+**Step 4.6: Remove Old Commands/Skills**
+
+```bash
+# Only if they weren't in .claude/ directories already removed
+# Remove individual duplicate files if custom structure was used
+find . -name "*prd-new*" -path "*/commands/*" -delete 2>/dev/null
+find . -name "*epic-decompose*" -path "*/commands/*" -delete 2>/dev/null
 # ... etc
 ```
 
-**Step 4.5: Archive Old Structure**
+**Step 4.7: Archive Old Structure**
 
 ```bash
 # Archive the old legacy-structure directory
@@ -281,9 +367,9 @@ Verification:
 Summary:
   ├── PRDs: [X] migrated to .project/prds/
   ├── Epics: [X] migrated to .project/epics/
-  ├── Context: [X] migrated to .project/context/
-  ├── Removed: [X] duplicate commands/skills
-  └── Archived: legacy-structure/ → .archive/[date]/
+  ├── Context: [X] consolidated to .project/context/
+  ├── Removed: .claude/{agents,commands,skills,scripts}/
+  └── Archived: legacy-structure/ + old .claude/ → .archive/[date]/
 
 New Structure:
   .project/
@@ -292,18 +378,27 @@ New Structure:
   ├── epics/
   │   └── [X] directories
   └── context/
-      ├── progress.md
       ├── project-overview.md
+      ├── tech-context.md
+      ├── progress.md
       └── [X] more files
 
-Removed Duplicates:
-  - .claude/commands/pm/prd-new.md (→ prd-create skill)
-  - .claude/commands/pm/epic-decompose.md (→ epic-planning skill)
-  - .claude/skills/legacy-structure-task/ (→ task-workflow skill)
-  - [list others]
+  .claude/
+  ├── mcp.json              (kept - Serena config)
+  └── CLAUDE.md (moved to root if not there)
+
+Removed Superseded Directories:
+  - .claude/agents/         (FlowForge plugin provides)
+  - .claude/commands/       (FlowForge plugin provides)
+  - .claude/skills/         (FlowForge plugin provides)
+  - .claude/scripts/        (no longer needed)
 
 Archive Location:
-  .archive/[date]/legacy-structure/
+  .archive/[date]/
+  ├── legacy-structure/                 (old PM structure)
+  ├── .claude-agents/       (old agents)
+  ├── .claude-commands/     (old commands)
+  └── .claude-skills/       (old skills)
 
 FlowForge Skills Now Active:
   ✓ prd-create
