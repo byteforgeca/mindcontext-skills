@@ -211,7 +211,7 @@ Skills automatically route to appropriate agents based on the operation:
 
 ### Serena Integration
 
-Agents use [Serena MCP](https://github.com/anthropics/serena) for intelligent code analysis when available:
+Agents use [Serena MCP](https://github.com/oraios/serena) for intelligent code analysis when available:
 
 | Agent | Serena Tools |
 |-------|-------------|
