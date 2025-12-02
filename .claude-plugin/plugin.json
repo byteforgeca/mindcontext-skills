@@ -1,6 +1,6 @@
 {
   "name": "flowforge-skills",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "FlowForge project management skills and agents for Claude Code - PRD creation, epic planning, task workflows, and intelligent scaffolding with BMAD methodology",
   "author": {
     "name": "tmsjngx0"
