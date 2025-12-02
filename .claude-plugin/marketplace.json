@@ -1,13 +1,13 @@
 {
-  "name": "flowforge-marketplace",
+  "name": "mindcontext-marketplace",
   "owner": {
-    "name": "tmsjngx0"
+    "name": "byteforgeca"
   },
   "plugins": [
     {
-      "name": "flowforge-skills",
+      "name": "mindcontext-skills",
       "source": "./",
-      "description": "FlowForge project management skills - PRD creation, epic planning, task workflows, and intelligent scaffolding"
+      "description": "MindContext Skills - The thinking layer for AI-assisted engineering. Shadow Engineering, BMAD methodology, and 21+ skills for structured development."
     }
   ]
 }
