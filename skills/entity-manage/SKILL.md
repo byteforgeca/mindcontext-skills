@@ -38,14 +38,14 @@ Unified CRUD operations for project management entities with intelligent agent r
 
 | Operation | Agent | Model | Reason |
 |-----------|-------|-------|--------|
-| `create` (prd) | pm-agent | sonnet | Strategic discovery, BMAD methodology |
-| `create` (epic) | architect-agent | sonnet | Technical decomposition |
-| `create` (issue) | developer-agent | sonnet | Implementation planning |
+| `create` (prd) | pm-agent | opus | Strategic discovery, BMAD methodology |
+| `create` (epic) | architect-agent | opus | Technical decomposition |
+| `create` (issue) | developer-agent | opus | Implementation planning |
 | `edit` | inline | haiku | Simple file modification |
 | `show` | inline | haiku | Read and display |
 | `list` | inline | haiku | Directory listing |
 | `close` | inline | haiku | Status update |
-| `sync` | developer-agent | sonnet | GitHub CLI integration |
+| `sync` | developer-agent | opus | GitHub CLI integration |
 | `status` | inline | haiku | Quick status check |
 
 ## Workflow
@@ -107,7 +107,7 @@ Issue: $BASE_PATH/epics/[epic-name]/[number].md
 Task:
   description: "Create PRD: [name]"
   subagent_type: "pm-agent"
-  model: sonnet
+  model: opus
   prompt: |
     Create a comprehensive PRD for: [name]
 
@@ -125,7 +125,7 @@ Task:
 Task:
   description: "Create Epic: [name]"
   subagent_type: "architect-agent"
-  model: sonnet
+  model: opus
   prompt: |
     Create a technical epic for: [name]
 
@@ -143,7 +143,7 @@ Task:
 Task:
   description: "Create Issue: [number] in [epic]"
   subagent_type: "developer-agent"
-  model: sonnet
+  model: opus
   prompt: |
     Create a task/issue for epic: [epic]
 
@@ -289,7 +289,7 @@ echo "Closed: $(date)"
 Task:
   description: "Sync [entity] to GitHub"
   subagent_type: "developer-agent"
-  model: sonnet
+  model: opus
   prompt: |
     Sync [entity_type] [name] to GitHub:
 
@@ -485,7 +485,7 @@ Completed: [count]
 ## Notes
 
 - Uses `.project/` structure (MindContext standard)
-- Agent-routed operations use sonnet model for quality
+- Agent-routed operations use opus model for highest quality
 - Simple operations use haiku model for speed
 - Issue numbers auto-normalize to 3-digit format
 - All entities use frontmatter for metadata

@@ -172,10 +172,10 @@ MindContext includes specialized agents using BMAD (Business Model Amplification
 
 | Agent | Purpose | Model | Used By |
 |-------|---------|-------|---------|
-| `pm-agent` | Strategic discovery and PRD creation | sonnet | `create prd` |
-| `architect-agent` | Technical design and epic creation | sonnet | `create epic` |
-| `developer-agent` | Implementation planning and coding | sonnet | `create issue`, `sync` |
-| `qa-agent` | Quality validation and testing | sonnet | Code review, testing |
+| `pm-agent` | Strategic discovery and PRD creation | opus | `create prd` |
+| `architect-agent` | Technical design and epic creation | opus | `create epic` |
+| `developer-agent` | Implementation planning and coding | opus | `create issue`, `sync` |
+| `qa-agent` | Quality validation and testing | opus | Code review, testing |
 
 ### How Agents Work
 
@@ -183,12 +183,12 @@ Skills automatically route to appropriate agents based on the operation:
 
 ```
 "create prd user-auth"
-  → Spawns pm-agent (sonnet)
+  → Spawns pm-agent (opus)
   → Strategic questioning
   → Creates .project/prds/user-auth.md
 
 "create epic user-auth"
-  → Spawns architect-agent (sonnet)
+  → Spawns architect-agent (opus)
   → Reads PRD, designs architecture
   → Creates .project/epics/user-auth/epic.md
 
@@ -201,14 +201,14 @@ Skills automatically route to appropriate agents based on the operation:
 
 | Operation | Agent | Model | Reason |
 |-----------|-------|-------|--------|
-| `create` (prd) | pm-agent | sonnet | Strategic discovery |
-| `create` (epic) | architect-agent | sonnet | Technical decomposition |
-| `create` (issue) | developer-agent | sonnet | Implementation planning |
+| `create` (prd) | pm-agent | opus | Strategic discovery |
+| `create` (epic) | architect-agent | opus | Technical decomposition |
+| `create` (issue) | developer-agent | opus | Implementation planning |
 | `edit` | inline | haiku | Simple modification |
 | `show` | inline | haiku | Read and display |
 | `list` | inline | haiku | Directory listing |
 | `close` | inline | haiku | Status update |
-| `sync` | developer-agent | sonnet | GitHub integration |
+| `sync` | developer-agent | opus | GitHub integration |
 | `status` | inline | haiku | Quick status check |
 
 ### Serena Integration
