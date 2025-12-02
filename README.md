@@ -383,6 +383,22 @@ rm -rf .claude/skills/  # project-level
 rm -rf ~/.claude/skills/mindcontext-*  # personal
 ```
 
+## FAQ
+
+### Does this work with Cursor, Codex, or other AI coding tools?
+
+No. MindContext Skills is **specifically for Claude Code**. It's built on Claude Code's plugin system and won't run in other tools.
+
+However, you can manually apply the **methodology** (PRDs, TDD, Shadow Engineering) in any tool—you just won't get the automated skills and agents.
+
+### Do I need to know how to code?
+
+You need basic familiarity with git, terminals, and your project structure. MindContext teaches you engineering concepts as you build—no CS degree required.
+
+### Is this free?
+
+Yes. MIT licensed and fully open source.
+
 ## Contributing
 
 Issues and PRs welcome at: https://github.com/byteforgeca/mindcontext-skills
