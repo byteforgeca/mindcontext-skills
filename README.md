@@ -1,17 +1,26 @@
 # MindContext Skills
 
-> Claude Code skills and agents plugin for structured project management with BMAD methodology
+**The thinking layer for AI-assisted engineering.**
 
-## Overview
+> From vibe code to production code.
 
-MindContext brings structured project management to Claude Code through natural language. Simply describe what you want to do and Claude activates the appropriate skill or spawns specialized agents for complex operations.
+## What is MindContext?
 
-**What's Included:**
-- **21 Skills** - Natural language triggers for PM workflows
-- **4 Agents** - Specialized AI agents using BMAD methodology
-- **Shadow Engineering** - Separate AI orchestration from production code
-- **Entity Management** - Unified CRUD for PRDs, Epics, and Issues
-- **Serena Integration** - Intelligent code analysis for agents
+You built something with AI. That's awesome! But now you need to add features, fix bugs, or work with a team—and things get messy fast.
+
+MindContext helps you move from "it works on my machine" to "it works in production." No CS degree required. Just practical structure that makes your AI-built projects maintainable.
+
+**You'll get:**
+- **Structure that scales** - PRDs, epics, and tasks that actually help
+- **AI that understands context** - 4 specialized agents (PM, Architect, Developer, QA)
+- **Clean git history** - Shadow Engineering separates AI mess from production code
+- **Natural language** - Just describe what you want: "create a PRD for user auth"
+- **Progressive learning** - Learn engineering concepts as you build
+
+**Built for:**
+- Developers who used Cursor/Lovable/Bolt and want to level up
+- Teams adopting AI-assisted development
+- Anyone who wants structure without the overwhelming theory
 
 ## Installation
 
@@ -85,6 +94,28 @@ Or ask Claude what skills are available:
 /plugin disable mindcontext-skills@byteforgeca # Disable plugin
 /plugin uninstall mindcontext-skills@byteforgeca # Remove plugin
 ```
+
+## Quick Start
+
+**New to structured development?** Start here:
+
+```
+"Initialize MindContext in this project"
+```
+
+This creates the `.project/` folder structure for you. Then try:
+
+- **"Create a PRD for [your feature]"** - Document what you're building
+- **"Setup Shadow Engineering"** - Separate AI context from production code
+- **"What MindContext skills do I have?"** - See everything available
+
+**Already shipping code?** Jump straight to:
+
+- **Planning:** "Create a PRD", "Plan this epic", "Break this down"
+- **Building:** "Work on task 3", "Start epic user-auth", "Use TDD"
+- **Maintaining:** "Commit my changes", "Merge this branch", "Sync to GitHub"
+
+All commands use natural language—just describe what you need.
 
 ## Available Skills
 
@@ -218,35 +249,39 @@ your-project/
 
 ## Shadow Engineering
 
-**Shadow Engineering** is a development pattern that separates AI orchestration (messy, iterative) from production code (clean, professional):
+Ever notice how your git history is full of "fix typo", "actually fix it", "ok NOW it works"? And random AI-generated comments everywhere?
+
+**Shadow Engineering** keeps that mess separate from your production code:
 
 ```
-Shadow (Parent Repo)           →    Light (Submodule)
+Your Workspace (Shadow)              What You Ship (Light)
 project-mgmt/                        actual-project/
-├── .project/                        ├── src/
-│   ├── prds/                        ├── tests/
-│   ├── epics/                       ├── package.json
-│   └── context/                     └── Clean git history
-├── .claude/
-├── prompts/
-├── docs/
-└── actual-project/ (submodule)
+├── .project/         ← PRDs, plans  ├── src/         ← Clean code
+├── .claude/          ← AI context   ├── tests/       ← Real tests
+├── prompts/          ← Experiments  ├── package.json ← No AI artifacts
+└── actual-project/   ← submodule    └── .git         ← Pro commits
 ```
 
-**Why Shadow Engineering?**
+**Why this matters:**
 
-✅ **Clean Git History** - No AI artifacts in production repo
-✅ **Separation of Concerns** - Orchestration vs. implementation
-✅ **Contribution-Ready** - Submodule looks like normal development
-✅ **Context Isolation** - Keep AI context separate from code
-✅ **Professional Output** - Ship clean code, not AI experiments
+✅ **Your git history looks professional** - No "fixing AI's mistakes" commits
+✅ **Teams can review your code** - No random AI comments to explain
+✅ **You can contribute anywhere** - Your code looks like any other repo
+✅ **Context stays organized** - All the messy iteration lives in one place
+✅ **Ship with confidence** - Production code is clean and maintainable
 
-**Setup:**
+**Real scenario:**
+- You: "Hey Claude, add user authentication"
+- Claude iterates in the shadow repo (messy, trying things)
+- You review, commit clean code to the submodule
+- GitHub shows pro commits, not AI chaos
+
+**Try it:**
 ```
-"Initialize Shadow Engineering"
+"Setup Shadow Engineering"
 ```
 
-This creates the parent/submodule structure for clean development. See [shadow-setup skill](skills/shadow-setup/SKILL.md) for details.
+See [shadow-setup skill](skills/shadow-setup/SKILL.md) for the full walkthrough.
 
 ## Natural Language Examples
 
