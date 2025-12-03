@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-12-03
+
+### Added
+- **External LLM review workflow** - New command for incorporating feedback from ChatGPT, Claude web, or other LLMs
+  - `/update-plan` - Incorporate external review feedback into current issue/task
+  - Works with existing MindContext Epic/Task structure
+  - Updates issue files directly with improvements from review
+
+### Changed
+- **`/next` command` - Clarified documentation for continuing current work or finding next task
+
 ## [2.1.1] - 2025-12-03
 
 ### Fixed
