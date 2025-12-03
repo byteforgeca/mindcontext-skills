@@ -61,6 +61,19 @@ Remote: [✓ Up to date / ⚠ X commits ahead]
 
 ### Phase 3: Update Context
 
+**Update Focus Timestamp:**
+```bash
+# Refresh focus.json timestamp to reflect end of session
+if [ -f ".project/state/focus.json" ]; then
+    jq --arg ts "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+       '.last_updated = $ts' \
+       .project/state/focus.json > /tmp/focus.json && \
+       mv /tmp/focus.json .project/state/focus.json
+    echo "✓ Focus state updated"
+fi
+```
+
+**Update Progress Context:**
 If `.project/context/` exists:
 ```bash
 # Update progress.md with session summary

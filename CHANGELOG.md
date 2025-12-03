@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-12-03
+
+### Added
+- **Automatic focus state management** - Focus now updates automatically throughout workflow
+  - `task-start` - Sets focus when starting a task
+  - `task-workflow` - Updates focus at start and completion
+  - `epic-start` - Sets focus when starting an epic
+  - `end-of-day` - Refreshes focus timestamp before session ends
+
+### Changed
+- **Complete session continuity** - Focus state persists through entire workflow
+  - Task start: Records epic, issue, branch, timestamp
+  - Task completion: Updates timestamp to reflect actual completion time
+  - Epic start: Records epic and branch (no specific issue yet)
+  - End of day: Captures final session state
+
+### Fixed
+- **Focus state gaps** - No longer loses context if Claude crashes
+  - Focus updates happen at key workflow points
+  - Timestamps accurately reflect last activity
+  - Session state survives accidental exits
+
 ## [2.3.1] - 2025-12-03
 
 ### Changed

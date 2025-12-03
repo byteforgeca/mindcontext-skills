@@ -1,6 +1,6 @@
 {
   "name": "mindcontext-skills",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "MindContext Skills - The thinking layer for AI-assisted engineering. Shadow Engineering, BMAD methodology, and 22 skills for structured development. Complements superpowers (TDD) and feature-dev (exploration).",
   "author": {
     "name": "tmsjngx0",

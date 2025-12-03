@@ -72,6 +72,19 @@ else
 fi
 ```
 
+**Step 2.2: Set Epic Focus**
+```bash
+# Update focus.json with epic (no specific issue yet)
+jq --arg epic "$EPIC" \
+   --arg branch "epic/$EPIC" \
+   --arg ts "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+   '.current_epic = $epic | .current_issue = null | .current_branch = $branch | .last_updated = $ts' \
+   .project/state/focus.json > /tmp/focus.json && \
+   mv /tmp/focus.json .project/state/focus.json
+
+echo "✓ Focus set to epic: $EPIC"
+```
+
 ### Phase 3: Task Analysis
 
 **Step 3.1: Read Epic Structure**
