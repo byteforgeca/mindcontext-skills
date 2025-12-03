@@ -113,7 +113,7 @@ This creates the `.project/` folder structure for you. Then try:
 
 **Already shipping code?** Jump straight to:
 
-- **Planning:** "Create a PRD", "Plan this epic", "Break this down"
+- **Planning:** "Create a PRD", "Create epic from PRD", "Plan this epic"
 - **Building:** "Work on task 3", "Start epic user-auth", "Use TDD"
 - **Maintaining:** "Commit my changes", "Merge this branch", "Sync to GitHub"
 
@@ -195,19 +195,21 @@ Skills automatically route to appropriate agents based on the operation:
   → Fast read and display
 ```
 
-### Agent Routing Matrix
+### How Agent Routing Works
 
-| Operation | Agent | Model | Reason |
-|-----------|-------|-------|--------|
-| `create` (prd) | pm-agent | opus | Strategic discovery |
-| `create` (epic) | architect-agent | opus | Technical decomposition |
-| `create` (issue) | developer-agent | opus | Implementation planning |
-| `edit` | inline | haiku | Simple modification |
-| `show` | inline | haiku | Read and display |
-| `list` | inline | haiku | Directory listing |
-| `close` | inline | haiku | Status update |
-| `sync` | developer-agent | opus | GitHub integration |
-| `status` | inline | haiku | Quick status check |
+**Main Claude agent automatically routes based on user intent:**
+
+| User Request | Agent Spawned | Why |
+|--------------|---------------|-----|
+| "create prd auth" | pm-agent | Strategic discovery, BMAD methodology |
+| "create epic auth" | architect-agent | Technical design, architecture decisions |
+| "plan epic auth" | architect-agent | Task decomposition, dependency mapping |
+| "work on task 3" | developer-agent | Implementation, coding, testing |
+| "analyze this code" | qa-agent | Bug hunting, quality analysis |
+| "review my changes" | qa-agent | Code review, pattern validation |
+| "debug this error" | qa-agent | Root cause analysis, troubleshooting |
+
+**No routing skill needed** - Main agent reads skill descriptions and user intent, then spawns the appropriate subagent with context.
 
 ### Serena Integration
 
@@ -326,7 +328,8 @@ MindContext includes **10 workflow-focused commands** for common operations:
 
 **Planning work:**
 ```
-"Plan the authentication epic"
+"Create epic user-auth"              # Convert PRD → Epic
+"Plan the authentication epic"       # Decompose epic → tasks
 "Break down the payment feature into tasks"
 "Start epic user-auth"
 ```
