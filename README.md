@@ -133,11 +133,13 @@ All commands use natural language—just describe what you need.
 | `start-of-day` | "sod", "start of day", "morning sync" | Sync repos, prime context, show status |
 | `prime-context` | "prime context", "load context" | Load project context files |
 | `session-init` | "start session", "init session" | Initialize work session |
+| `focus-state` | "what am I working on", "focus on epic X" | Manage current work focus (epic/issue/branch) |
 
 ### Planning & Requirements
 | Skill | Triggers | Description |
 |-------|----------|-------------|
 | `prd-create` | "create prd for X", "new prd" | Create product requirements document |
+| `epic-create` | "create epic X", "convert X PRD to epic" | Convert PRD to technical epic with architecture |
 | `epic-planning` | "plan epic X", "decompose epic" | Break epic into tasks with dependencies |
 | `epic-start` | "start epic X", "begin epic" | Create branch and launch epic work |
 
@@ -156,10 +158,6 @@ All commands use natural language—just describe what you need.
 | `smart-commit` | "commit", "smart commit", "save work" | Intelligent commit across submodules, worktrees, and parent repo |
 | `merge-workflow` | "merge X into Y", "combine branches" | Branch merge with conflict resolution |
 
-### Entity Management
-| Skill | Triggers | Description |
-|-------|----------|-------------|
-| `entity-manage` | "create/edit/show/list/close prd/epic/issue" | Unified CRUD with intelligent agent routing |
 
 ### Code Analysis
 | Skill | Triggers | Description |
@@ -287,6 +285,30 @@ project-mgmt/                        actual-project/
 
 See [shadow-setup skill](skills/shadow-setup/SKILL.md) for the full walkthrough.
 
+## Available Commands
+
+MindContext includes **10 workflow-focused commands** for common operations:
+
+### Session Commands
+- `/sod` - Start of day (sync repos, load context, show status)
+- `/eod` - End of day (check uncommitted, update context)
+
+### Planning Commands
+- `/prd` - Create PRD
+- `/epic` - Create epic from PRD
+- `/plan` - Decompose epic into tasks
+
+### Working Commands
+- `/next` - Find next available task
+- `/focus` - Manage current work focus
+- `/commit` - Smart commit across repos
+
+### Syncing & Setup
+- `/sync` - Sync to GitHub
+- `/shadow` - Setup Shadow Engineering
+
+**Note:** Analysis commands (analyze, debug, find, review, trace, security) were removed in v2.1.0. Use natural language instead - Claude routes to the correct agent automatically.
+
 ## Natural Language Examples
 
 **Starting your day:**
@@ -330,14 +352,22 @@ See [shadow-setup skill](skills/shadow-setup/SKILL.md) for the full walkthrough.
 "Convert existing PM structure"
 ```
 
-**Entity Management (NEW):**
+**Analysis (natural language, no commands):**
 ```
-"create prd user-auth"
-"show epic payments"
-"list issues in auth-epic"
-"close issue 3"
-"sync epic to github"
-"prd status"
+"analyze this code for bugs"
+"debug why login fails"
+"find where API calls are made"
+"review my changes before I commit"
+"trace how user data flows from signup to database"
+"security audit the payment flow"
+```
+
+**Focus management:**
+```
+"what am I working on?"
+"focus on epic user-auth"
+"focus on issue 003"
+"what's next?"
 ```
 
 ## Migrating Existing Projects

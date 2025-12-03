@@ -44,6 +44,7 @@ Create these directories:
 - `.project/prds/`
 - `.project/epics/`
 - `.project/context/`
+- `.project/state/`
 
 ### 4. Create Progress File
 
@@ -97,13 +98,37 @@ Follow existing patterns in the codebase.
 - Keep commit messages clean and professional
 ```
 
-### 6. GitHub Labels (Optional)
+### 6. Create State Files
+
+Create `.project/config.json` with:
+
+```json
+{
+  "tdd_mode": true,
+  "auto_sync_github": false,
+  "default_agent_model": "opus",
+  "commit_style": "conventional"
+}
+```
+
+Create `.project/state/focus.json` with:
+
+```json
+{
+  "current_epic": null,
+  "current_issue": null,
+  "current_branch": null,
+  "last_updated": null
+}
+```
+
+### 7. GitHub Labels (Optional)
 
 If `gh` CLI is available and authenticated, create labels:
 - `epic` (green)
 - `task` (blue)
 
-### 7. Summary
+### 8. Summary
 
 Show user:
 
@@ -114,6 +139,8 @@ Created:
   .project/prds/
   .project/epics/
   .project/context/progress.md
+  .project/state/focus.json
+  .project/config.json
   CLAUDE.md
 
 Detected: [project type]
