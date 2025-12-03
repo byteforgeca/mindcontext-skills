@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2025-12-02
+
+### Added
+- **epic-create skill** - Convert PRD to technical Epic (completes PRD → Epic → Tasks workflow)
+- **focus-state skill** - Manage current work focus (epic/issue/branch tracking)
+- **State management** - `config.json` and `.project/state/focus.json` for project configuration
+- **Workflow commands (5 new)** - `/prd`, `/epic`, `/plan`, `/focus`, `/next`
+
+### Removed
+- **entity-manage skill** - Violated architecture (skills cannot spawn agents)
+- **Analysis commands (6 removed)** - `/analyze`, `/debug`, `/find`, `/review`, `/trace`, `/security`
+  - Use natural language instead: "analyze this code", "debug this error", etc.
+  - Main Claude agent routes to correct subagent automatically
+
+### Changed
+- **Commands simplified** - From 11 to 10 workflow-focused commands
+- **project-scaffold skill** - Now creates `.project/state/` directory and state files
+- **README** - Updated skill table, added commands section, clarified natural language usage
+- **Total skills: 23** (21 existing + 2 new - 1 removed)
+
+### Fixed
+- **Architecture compliance** - No skills spawn agents (per official Claude Code docs)
+- **Workflow gap** - PRD → Epic conversion now works via epic-create skill
+
 ## [1.1.0] - 2025-11-25
 
 ### Added
